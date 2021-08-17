@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from os import access
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -19,8 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_clma0p+!7vh2&qk1n)mai&9wwt7gxksyuz=br8ih98z=#r#!z'
+try:
+    from .local_settings import all
+except ImportError:
+    raise Exception('you need a local_setting.py containing a django secret key')
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

@@ -12,3 +12,4 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+people_app/people_app/local_settings.py
